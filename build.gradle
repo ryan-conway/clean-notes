@@ -2,59 +2,57 @@
 buildscript {
     ext.versions = [
             'coroutines': '1.3.9',
-            'espresso': '3.3.0',
-            'hilt': '2.31-alpha',
-            'junit': '4.13.1',
-            'junit_ext': '1.1.2',
-            'kotlin': '1.4.21',
-            'lifecycle': '2.2.0',
-            'navigation': '2.3.2',
-            'room': '2.2.6',
+            'espresso'  : '3.3.0',
+            'hilt'      : '2.31.2-alpha',
+            'junit'     : '4.13.1',
+            'junit_ext' : '1.1.2',
+            'kotlin'    : '1.4.30',
+            'lifecycle' : '2.2.0',
+            'navigation': '2.3.3',
+            'room'      : '2.2.6',
     ]
-
     ext.deps = [
-            'androidx': [
-                    'appcompat': "androidx.appcompat:appcompat:1.2.0",
-                    'constraintlayout': "androidx.constraintlayout:constraintlayout:2.0.4",
-                    'core': "androidx.core:core-ktx:1.3.2",
-                    'lifecycle': [
-                            'livedata': "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}",
-                            'viewmodel': "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
-                    ],
-                    'navigation': [
-                            'fragment': "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
-                            'safeargs': "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}",
-                            'ui': "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
-                    ],
-                    'room': [
-                            'runtime': "androidx.room:room-runtime:${versions.room}",
-                            'compiler': "androidx.room:room-compiler:${versions.room}",
-                            'ktx': "androidx.room:room-ktx:${versions.room}"
-                    ],
-                    'test': [
-                            'ext': "androidx.test.ext:junit:${versions.junit_ext}",
-                            'espresso': "androidx.test.espresso:espresso-core:${versions.espresso}"
-                    ]
+            'android'       : [
+                    "androidx.appcompat:appcompat:1.2.0",
+                    "androidx.constraintlayout:constraintlayout:2.0.4",
+                    "androidx.core:core-ktx:1.3.2",
+                    "com.google.android.material:material:1.3.0"
             ],
-            'coroutines': [
-                    'android' : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",
-                    'core' : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
-                    'test' : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}"
+            'kotlin'        : [
+                    "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
             ],
-            'google': [
-                    'material': "com.google.android.material:material:1.2.1"
+            'coroutines'    : [
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
             ],
-            'hilt' :[
-                    'android': "com.google.dagger:hilt-android:${versions.hilt}",
-                    'compiler': "com.google.dagger:hilt-android-compiler:${versions.hilt}",
-                    'gradle': "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
+            'coroutinesTest': [
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}"
             ],
-            'junit': [
-                    'junit': "junit:junit:${versions.junit}"
+            'hilt'          : [
+                    "com.google.dagger:hilt-android:${versions.hilt}",
             ],
-            'kotlin': [
-                    'plugin': "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
-                    'stdlib': "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+            'hiltKapt'      : [
+                    "com.google.dagger:hilt-android-compiler:${versions.hilt}"
+            ],
+            'lifecycle'     : [
+                    "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}",
+                    "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
+            ],
+            'navigation'    : [
+                    "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+                    "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+            ],
+            'room'          : [
+                    "androidx.room:room-runtime:${versions.room}",
+                    "androidx.room:room-ktx:${versions.room}"
+            ],
+            'roomKapt'      : [
+                    "androidx.room:room-compiler:${versions.room}",
+            ],
+            'testing'       : [
+                    "androidx.test.ext:junit:${versions.junit_ext}",
+                    "androidx.test.espresso:espresso-core:${versions.espresso}",
+                    "junit:junit:${versions.junit}"
             ]
     ]
 
@@ -65,9 +63,9 @@ buildscript {
 
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.2"
-        classpath deps.kotlin.plugin
-        classpath deps.androidx.navigation.safeargs
-        classpath deps.hilt.gradle
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
     }
 }
 

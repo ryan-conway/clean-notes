@@ -21,6 +21,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -43,37 +48,28 @@ dependencies {
     implementation project(path: ':domain')
 
     // kotlin
-    implementation deps.kotlin.stdlib
+    implementation deps.kotlin
 
     // Coroutines
-    implementation deps.coroutines.android
+    implementation deps.coroutines
 
     // Android
-    implementation deps.androidx.appcompat
-    implementation deps.androidx.constraintlayout
-    implementation deps.androidx.core
+    implementation deps.android
 
     // hilt dependency injection
-    implementation deps.hilt.android
-    kapt deps.hilt.compiler
-
-    // material design
-    implementation deps.google.material
+    implementation deps.hilt
+    kapt deps.hiltKapt
 
     // room database
-    implementation deps.androidx.room.runtime
-    kapt deps.androidx.room.compiler
-    implementation deps.androidx.room.ktx
+    implementation deps.room
+    kapt deps.roomKapt
 
     // lifecycle
-    implementation deps.androidx.lifecycle.livedata
-    implementation deps.androidx.lifecycle.viewmodel
+    implementation deps.lifecycle
 
     // navigation
-    implementation deps.androidx.navigation.fragment
-    implementation deps.androidx.navigation.ui
+    implementation deps.navigation
 
-    testImplementation deps.junit.junit
-    androidTestImplementation deps.androidx.test.ext
-    androidTestImplementation deps.androidx.test.espresso
+    testImplementation deps.testing
+    androidTestImplementation deps.testing
 }
