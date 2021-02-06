@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface NoteDao {
 
-    @Query("SELECT * FROM notes")
+    @Query("SELECT * FROM notes ORDER BY modified_date DESC")
     fun getNotes(): Flow<List<NoteEntity>>
 
     @Query("SELECT * FROM notes WHERE id = :id")
@@ -20,4 +20,7 @@ interface NoteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveNotes(notes: List<NoteEntity>)
+
+    @Query("DELETE FROM notes WHERE id = :id")
+    suspend fun deleteNote(id: String)
 }

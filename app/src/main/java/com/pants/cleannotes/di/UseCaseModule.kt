@@ -1,10 +1,7 @@
 package com.pants.cleannotes.di
 
 import com.pants.domain.repository.NoteRepository
-import com.pants.domain.usecase.GetNoteUseCase
-import com.pants.domain.usecase.GetNotesUseCase
-import com.pants.domain.usecase.SaveNoteUseCase
-import com.pants.domain.usecase.ToggleFavouriteUseCase
+import com.pants.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,6 +19,9 @@ object UseCaseModule {
 
     @Provides
     fun provideSaveNoteUseCase(repository: NoteRepository) = SaveNoteUseCase(repository)
+
+    @Provides
+    fun provideDeleteNoteUseCase(repository: NoteRepository) = DeleteNoteUseCase(repository)
 
     @Provides
     fun provideToggleFavouriteUseCase(repository: NoteRepository) = ToggleFavouriteUseCase(repository)

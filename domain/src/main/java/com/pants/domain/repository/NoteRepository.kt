@@ -8,4 +8,5 @@ interface NoteRepository {
     fun getNotes(): Flow<List<Note>>
     suspend fun saveNote(note: Note)
     suspend fun toggleFavourite(note: Note): Boolean
+    suspend fun deleteNote(note: Note)
 }

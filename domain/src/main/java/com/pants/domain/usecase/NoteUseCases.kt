@@ -16,6 +16,10 @@ class SaveNoteUseCase(private val noteRepository: NoteRepository) {
     suspend fun execute(note: Note): Unit = noteRepository.saveNote(note)
 }
 
+class DeleteNoteUseCase(private val noteRepository: NoteRepository) {
+    suspend fun execute(note: Note): Unit = noteRepository.deleteNote(note)
+}
+
 class ToggleFavouriteUseCase(private val noteRepository: NoteRepository) {
     suspend fun execute(note: Note): Boolean = noteRepository.toggleFavourite(note)
 }

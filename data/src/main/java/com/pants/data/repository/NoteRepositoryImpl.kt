@@ -26,5 +26,7 @@ class NoteRepositoryImpl(
         api.saveNote(note)
     }
 
+    override suspend fun deleteNote(note: Note) = cache.deleteNote(note)
+
     override suspend fun toggleFavourite(note: Note): Boolean = cache.toggleFavourite(note)
 }

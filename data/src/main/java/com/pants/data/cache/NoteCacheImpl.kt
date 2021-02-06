@@ -34,5 +34,7 @@ class NoteCacheImpl(
         }
     }
 
+    override suspend fun deleteNote(note: Note) = database.noteDao().deleteNote(note.id)
+
     override suspend fun toggleFavourite(note: Note): Boolean = preferences.toggleFavourite(note.id)
 }

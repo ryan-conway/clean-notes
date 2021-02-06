@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Clean Notes</string>
+    <string name="add_note">Add Note</string>
+    <string name="no_notes">You have no notes yet</string>
+    <string name="title">Title</string>
+    <string name="note">Note</string>
 </resources>

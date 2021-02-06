@@ -2,7 +2,6 @@ package com.pants.cleannotes.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.pants.data.api.NoteApiImpl
 import com.pants.data.cache.NoteCacheImpl
 import com.pants.data.cache.adapter.NoteAdapter
@@ -18,12 +17,14 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
     @Provides
+    @Singleton
     fun provideNoteDatabase(@ApplicationContext context: Context): NoteDatabase {
         return Room.databaseBuilder(context, NoteDatabase::class.java, "notes.db")
             .build()
@@ -41,8 +42,7 @@ object RepositoryModule {
         database: NoteDatabase,
         preferences: Preferences,
         adapter: NoteAdapter
-    ): NoteCache =
-        NoteCacheImpl(database, preferences, adapter)
+    ): NoteCache = NoteCacheImpl(database, preferences, adapter)
 
     @Provides
     fun provideNoteApi(): NoteApi = NoteApiImpl()

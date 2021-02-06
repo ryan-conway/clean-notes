@@ -40,7 +40,8 @@ buildscript {
             ],
             'navigation'    : [
                     "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
-                    "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+                    "androidx.navigation:navigation-ui-ktx:${versions.navigation}",
+                    'androidx.hilt:hilt-navigation-fragment:1.0.0-alpha03'
             ],
             'room'          : [
                     "androidx.room:room-runtime:${versions.room}",
