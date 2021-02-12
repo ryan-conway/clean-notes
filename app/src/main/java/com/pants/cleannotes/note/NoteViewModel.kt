@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pants.cleannotes.util.DispatcherProvider
 import com.pants.domain.Note
 import com.pants.domain.usecase.GetNoteUseCase
 import com.pants.domain.usecase.SaveNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class NoteViewModel @Inject constructor(
     private val getNoteUseCase: GetNoteUseCase,
-    private val saveNoteUseCase: SaveNoteUseCase
+    private val saveNoteUseCase: SaveNoteUseCase,
+    private val dispatchers: DispatcherProvider
 ) : ViewModel() {
 
     private val _note = MutableLiveData<Note?>()
@@ -33,14 +34,14 @@ class NoteViewModel @Inject constructor(
     }
 
     fun loadNote(id: String?) = viewModelScope.launch {
-        withContext(Dispatchers.IO) {
+        withContext(dispatchers.getIO()) {
             noteId = id
             id?.let { _note.postValue(getNoteUseCase.execute(it)) }
         }
     }
 
     fun saveNote(title: String, text: String) = GlobalScope.launch {
-        withContext(Dispatchers.IO) {
+        withContext(dispatchers.getIO()) {
             if (!isEdited) return@withContext
             val noteId = noteId
             if (noteId == null && title.isBlank() && text.isBlank()) return@withContext
